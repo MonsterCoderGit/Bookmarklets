@@ -165,9 +165,8 @@ rows.forEach(row => {
 });
 
 const headerRow = document.querySelector(
-    '#grid_stuGradesGrid_28753_100 thead tr'
+    '[id^="grid_stuGradesGrid_"] thead tr'
 );
-
 if (headerRow) {
     const headers = [...headerRow.children];
 
@@ -185,6 +184,8 @@ if (headerRow) {
     headers[4].style.display = "";
     headers[4].querySelector("div").textContent = "S1 Percent";
 }
+
+
 
 const darkMode = document.createElement("style");
 
@@ -275,25 +276,33 @@ darkMode.textContent = `
         color: #8ab4f8 !important;
     }
 
-    /* Grades */
-    #grid_stuGradesGrid_28753_100,
-    #grid_stuGradesGrid_28753_100 tbody,
-    #grid_stuGradesGrid_28753_100 tr,
-    #grid_stuGradesGrid_28753_100 td,
-    #grid_stuGradesGrid_28753_100 th {
+    /* Grades - works with any grid_stuGradesGrid_* ID */
+    [id^="grid_stuGradesGrid_"],
+    [id^="grid_stuGradesGrid_"] tbody,
+    [id^="grid_stuGradesGrid_"] tr,
+    [id^="grid_stuGradesGrid_"] td,
+    [id^="grid_stuGradesGrid_"] th {
         background: #181a1f !important;
         color: #e6e6e6 !important;
     }
 
-    #grid_stuGradesGrid_28753_100 .sf_highlightYellow {
+    [id^="grid_stuGradesGrid_"] .sf_highlightYellow {
         background: #22242a !important;
         color: #e6e6e6 !important;
     }
 
-    #grid_stuGradesGrid_28753_100 tbody tr[group-parent],
-    #grid_stuGradesGrid_28753_100 tbody tr[group-parent] td {
+    [id^="grid_stuGradesGrid_"] tbody tr[group-parent],
+    [id^="grid_stuGradesGrid_"] tbody tr[group-parent] td {
         background: #181a1f !important;
         color: #e6e6e6 !important;
+    }
+
+    /* Grade grid wrapper */
+    [id^="grid_stuGradesGrid_"][id$="_gridWrap"] {
+        background: #181a1f !important;
+        background-color: #181a1f !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
     }
 
     /* Tags */
@@ -303,7 +312,7 @@ darkMode.textContent = `
         border-color: #303238 !important;
     }
 
-    /* Header */
+    /* Headers */
     #sf_HeaderWrap {
         background: #181a1f !important;
         color: #e6e6e6 !important;
@@ -331,6 +340,23 @@ darkMode.textContent = `
         background-color: #101114 !important;
     }
 
+    /* Utility area */
+    #sf_UtilityArea,
+    #sf_UtilityArea * {
+        background-color: #181a1f !important;
+        color: #e6e6e6 !important;
+    }
+
+    .sf_utilityAreaBG {
+        background: transparent !important;
+        border: 1px solid #ffffff !important;
+    }
+
+    /* Section headings */
+    .sf_heading {
+        color: #e6e6e6 !important;
+    }
+
     /* Suppressed assignments */
     #grid_suppressed_gridWrap,
     #grid_suppressed_gridWrap table,
@@ -352,26 +378,56 @@ darkMode.textContent = `
         background: #181a1f !important;
         color: #e6e6e6 !important;
     }
-    #grid_stuGradesGrid_28753_100_gridWrap {
-    border-bottom: none !important;
-    box-shadow: none !important;
+    [id^="grid_stuGradesGrid_"] .fixedColWrap,
+    [id^="grid_stuGradesGrid_"] .fixedHeader,
+    [id^="grid_stuGradesGrid_"] .fixedRows,
+    [id^="grid_stuGradesGrid_"] .scrollWrap {
+        background: #181a1f !important;
+        background-color: #181a1f !important;
+    }
+[id^="grid_stuGradesGrid_"] .eWs {
+    background: #181a1f !important;
 }
-.sf_heading {
-    color: #e6e6e6 !important;
-}
-#sf_UtilityArea,
-#sf_UtilityArea * {
-    background-color: #181a1f !important;
-    color: #e6e6e6 !important;
-}
-.sf_utilityAreaBG {
-    background: transparent !important;
-    border: 1px solid #ffffff !important;
-}
-#grid_stuGradesGrid_28753_100_gridWrap {
+[id^="grid_stuGradesGrid_"] td.sf_highlightYellow {
     background: #181a1f !important;
     background-color: #181a1f !important;
+    color: #e6e6e6 !important;
 }
 `;
+document.querySelectorAll(
+    '[id^="grid_stuGradesGrid_"] td.sf_highlightYellow'
+).forEach(el => {
+    el.style.setProperty('background', '#181a1f', 'important');
+    el.style.setProperty('background-color', '#181a1f', 'important');
+});
+document.querySelectorAll(
+    '[id^="grid_stuGradesGrid_"] td.cCl.cMwS'
+).forEach(el => {
+    el.style.setProperty('background', '#181a1f', 'important');
+    el.style.setProperty('background-color', '#181a1f', 'important');
+});
+// Fix highlighted grade cells
+document.querySelectorAll(
+    '[id^="grid_stuGradesGrid_"] td.sf_highlightYellow'
+).forEach(el => {
+    el.style.setProperty('background', '#181a1f', 'important');
+    el.style.setProperty('background-color', '#181a1f', 'important');
+});
 
+// Fix highlighted header cells
+document.querySelectorAll(
+    '[id^="grid_stuGradesGrid_"] th.sf_highlightYellow'
+).forEach(el => {
+    el.style.setProperty('background', '#22242a', 'important');
+    el.style.setProperty('background-color', '#22242a', 'important');
+    el.style.setProperty('color', '#e6e6e6', 'important');
+});
+
+// Fix white row-label cells
+document.querySelectorAll(
+    '[id^="grid_stuGradesGrid_"] td.cCl.cMwS'
+).forEach(el => {
+    el.style.setProperty('background', '#181a1f', 'important');
+    el.style.setProperty('background-color', '#181a1f', 'important');
+});
 document.head.appendChild(darkMode);
