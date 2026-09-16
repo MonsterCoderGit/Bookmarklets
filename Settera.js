@@ -2,9 +2,16 @@ var numberOfCountries = 195
 
 
 
-document.getElementsByClassName("button_button__aR6_e")[0].addEventListener("click", solveAllCountries); // Primary Start Button
-document.getElementsByClassName("button_button__aR6_e")[1].addEventListener("click", solveAllCountries); // Secondary Start Button
+const primaryButton = document.getElementsByClassName("button_sizeLarge__2AJaj")[0];
+const secondaryButton = document.getElementsByClassName("button_button__HOmVR")[0];
 
+if (primaryButton) {
+    primaryButton.addEventListener("click", solveAllCountries);
+}
+
+if (secondaryButton) {
+    secondaryButton.addEventListener("click", solveAllCountries);
+}
 function solveAllCountries(){
     for (var i = 0; i < numberOfCountries*100; i += 100){
         setTimeout(() => {
