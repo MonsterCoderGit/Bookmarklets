@@ -2,22 +2,31 @@ var numberOfCountries = 195
 
 
 
-const primaryButton = document.getElementsByClassName("button_sizeLarge__2AJaj")[0];
-const secondaryButton = document.getElementsByClassName("button_button__HOmVR")[0];
+function setupButtons() {
+    const primaryButton =
+        document.getElementsByClassName("button_sizeLarge__2AJaj")[0];
 
-if (primaryButton) {
-    primaryButton.addEventListener("click", solveAllCountries);
+    const secondaryButton =
+        document.getElementsByClassName("button_button__HOmVR")[0];
+
+    if (primaryButton) {
+        primaryButton.addEventListener("click", solveAllCountries);
+    }
+
+    if (secondaryButton) {
+        secondaryButton.addEventListener("click", solveAllCountries);
+    }
 }
 
-if (secondaryButton) {
-    secondaryButton.addEventListener("click", solveAllCountries);
-}
+setupButtons();
+
 function solveAllCountries(){
     for (var i = 0; i < numberOfCountries*100; i += 100){
         setTimeout(() => {
             solveCountry();
         }, 100+i);
     }
+   setTimeout(setupButtons, numberOfCountries * 100 + 500);
 }
 
 // Some names are not consitant with their IDs
